@@ -10,7 +10,7 @@ const helpers = require("./helpers");
  * @param object : data
  * @returns object : client
  */
-const createClient = function(environment, data){
+const createClient = async function(environment, data){
     const client = {
         environment : environment,
         access_code : data.access_code,
@@ -39,7 +39,7 @@ const createClient = function(environment, data){
  * @param object : data
  * @returns string : signature
  */
-const createSignature = function(passphrase, data){
+const createSignature = async function(passphrase, data){
     const signature = helpers.createSignature(passphrase, data);
     return signature;
 };
@@ -53,14 +53,14 @@ const createSignature = function(passphrase, data){
  * @param function : callback
  * @returns object : client
  */
-const sendRequest = function(client, data){
+const sendRequest = async function(client, data){
     data.access_code = client.access_code;
     data.merchant_identifier = client.merchant_identifier;
     if(!data.signature){
         data.signature = createSignature(client.passphrase, data);
     }
 
-    axios.post(client.url, data)
+    return await axios.post(client.url, data)
         .then(function (response) {
             return response;
         })
