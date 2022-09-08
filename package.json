@@ -1,0 +1,13 @@
+{
+  "name": "payfort-custom-integration",
+  "description": "Unofficial Custom merchant page integration",
+  "version": "1.0.0",
+  "keywords": [
+    "Payfort", "Custom Integration"
+  ],
+  "author": "Ujjwal_Bera",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
