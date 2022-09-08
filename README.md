@@ -29,10 +29,10 @@ const payfort = require("payfort-custom-integration");
 
 ```javascript
 // Create client for payment
-const client = payfort.createClient("development", {
+const client = await payfort.createClient("development", {
   access_code : "your_access_code",
   merchant_identifier : "your_merchant_identifier",
-  passphrase : "your_passphrase"
+  passphrase : "your_passphrase",
   purchase_url : "send this only to override default urls"
 });
 ```
@@ -53,8 +53,10 @@ const purchaseData = {
 
 ```javascript
 //Send payment request
-payfort.sendRequest(client, purchaseData)
+const response = await payfort.sendRequest(client, purchaseData);
+//response.body will be the hole form page which you can design as per you web page.
 ```
+
 
 ## Bugs or improvements
 
