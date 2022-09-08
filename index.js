@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios').default;
 const config = require("./config");
 const helpers = require("./helpers");
 
@@ -53,17 +53,20 @@ const createSignature = function(passphrase, data){
  * @param function : callback
  * @returns object : client
  */
-const sendRequest = function(client, data, callback){
+const sendRequest = function(client, data){
     data.access_code = client.access_code;
     data.merchant_identifier = client.merchant_identifier;
     if(!data.signature){
         data.signature = createSignature(client.passphrase, data);
     }
 
-    axios.post(
-        client.url,
-        data
-    );
+    axios.post(client.url, data)
+        .then(function (response) {
+            return response;
+        })
+        .catch(function (error) {
+            throw new Error(error)
+        });
 };
 
 

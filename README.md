@@ -23,26 +23,22 @@ npm install payfort-custom-integration --save
 And here's some code! :+1:
 
 ```javascript
-// initialize the client
+// Initialize the payfort package
 const payfort = require("payfort-custom-integration");
 ```
 
 ```javascript
-// create client
+// Create client for payment
 const client = payfort.createClient("development", {
   access_code : "your_access_code",
   merchant_identifier : "your_merchant_identifier",
   passphrase : "your_passphrase"
   purchase_url : "send this only to override default urls"
 });
-
-// Default Authorization/Purchase URLs
-// Test Environment URL: https://sbcheckout.payfort.com/FortAPI/paymentPage
-// Production Environment URL: https://checkout.payfort.com/FortAPI/paymentPage
 ```
 
 ```javascript
-// purchase data to be sent to payfort
+// Purchase data object sample
 const purchaseData = {
   "amount": data.amount,
   "command" : "PURCHASE", // PURCHASE OR AUTHORIZATION
@@ -56,30 +52,24 @@ const purchaseData = {
 ```
 
 ```javascript
-//call payfort API
-payfort.sendRequest(client, purchaseData, function(err, response){
-  if(err){
-      //error stuff
-    }
-    //handle response
-})
+//Send payment request
+payfort.sendRequest(client, purchaseData)
 ```
 
-When you get the callback from payfort you can use the following code to validate the data sent by payfort.
+## Bugs or improvements
 
-```javascript
-// Callback will be a get request so below valiable 'get_request' will the decoded Query Parameters
+Every project needs improvements, Feel free to report any bugs or improvements. Pull requests are always welcome.
 
-const get_request = {
-  // decoded query params
-};
-const original_signature = get_request.signature;
-delete response.signature;
-const new_signature = payfort.createSignature("your_passphrase", get_request);
+## Advertise for Job/Work Contract
 
-if(original_signature == new_signature){
-  // valid data
-}else{
-  // invalid data
-}
-```
+I am open for a good job or work contract. You can contact me directly on my email ([bera.ujjwal@hotmail.com](mailto:bera.ujjwal@hotmail.com 'bera.ujjwal@hotmail.com')) or on my skype `ujjwalbera`.
+
+## Buy me a Coffee
+
+Hi! I'm Ujjwal Bera, I'm an open source enthusiast and devote my free time to building projects in this field.
+
+I'm the creator and maintainer of [payfort](https://github.com/beraujjwal/payfort-custom-integration/blob/master/README.md), [MNode](https://github.com/beraujjwal/mnodejs/blob/main/README.md) and [SNode](https://github.com/beraujjwal/snode/blob/main/README.md).
+
+I'm doing my best to provide you a good experience when using my apps, so if you like what I'm doing and wish to say "thanks!", You can appreciate me or my hard work and time spent to create this helpful structure with buying me a coffee.
+
+<a href="https://www.buymeacoffee.com/beraujjwalu" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
